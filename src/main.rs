@@ -1,9 +1,11 @@
 use time::{macros::datetime, OffsetDateTime, PrimitiveDateTime as DateTime};
 
+// mod learning_time_crate;
+
 fn main() {
     println!("1) hello = {}", hello());
     println!("2) reverse_string = {}", reverse_string("stressed"));
-    println!("3) after = {}", after(datetime!(2011-04-25 00:00:00)))
+    println!("3) after = {}", after(datetime!(2011-04-25 00:00:00)));
 }
 
 fn after(start: DateTime) -> DateTime {

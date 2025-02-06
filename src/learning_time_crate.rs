@@ -1,10 +1,27 @@
-use time::format_description::well_known::Iso8601;
+use time::format_description::well_known::{Iso8601, Rfc3339};
 use time::macros::{date, datetime, format_description, offset, time};
 use time::{Date, Duration, OffsetDateTime, PrimitiveDateTime, UtcOffset};
 use time::{Month, Time, Weekday};
 
 
-fn learning_time_crate() {
+pub fn learning_format_description() {
+    let implied = format_description!("[hour]:[minute]:[second]"); // Version 1 is implied.
+    let version_1 = format_description!(version = 1, "[hour]:[minute]:[second]");
+    let version_2 = format_description!(version = 2, "[hour]:[minute]:[second]");
+
+    println!("implied: {implied:?} \nversion_1: {version_1:?} \nversion_2: {version_2:?}");
+    
+    let time = datetime!(1997-11-12 9:55:06 +00:00).format(&Iso8601::DEFAULT).unwrap();
+    let time = datetime!(1997-11-12 9:55:06 +00:00).format(&Iso8601::DATE_TIME_OFFSET).unwrap();
+    let time = OffsetDateTime::parse("1990-11-01T08:45:33-03:00", &Rfc3339).unwrap();
+    let time = OffsetDateTime::parse("1990-11-01T08:45:33+00:00", &Rfc3339).unwrap();
+    let time = datetime!(2025-01-01 01:02:03 +00:00).format(&Rfc3339).unwrap();
+    let time = datetime!(1990-11-01 08:45:17 +03:00).format(&Rfc3339).unwrap();
+    println!("a={time}")
+}
+
+
+pub fn learning_time_crate() {
     // draft for the after() solution
     let datetime = datetime!(2011-04-25 00:00:00);
     let offset = datetime!(2011-04-25 00:00:00 UTC);
