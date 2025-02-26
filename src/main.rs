@@ -1,11 +1,18 @@
+use clock::Clock;
 use time::{macros::datetime, OffsetDateTime, PrimitiveDateTime as DateTime};
 
 // mod learning_time_crate;
+mod clock;
 
 fn main() {
     println!("1) hello = {}", hello());
     println!("2) reverse_string = {}", reverse_string("stressed"));
     println!("3) after = {}", after(datetime!(2011-04-25 00:00:00)));
+    println!("4) clock = {}", Clock::new(2, 20).add_minutes(-3000));
+
+    // let a = u8::MAX;
+    // println!("{:?}", a.wrapping_add(1));
+
 }
 
 fn after(start: DateTime) -> DateTime {
